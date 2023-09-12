@@ -1,0 +1,60 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "env": {
+    },
+    "parserOptions": {
+        "ecmaVersion": 13,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "extends": [
+        "plugin:react/jsx-runtime",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "@react-native",
+        "plugin:prettier/recommended"
+    ],
+    "plugins": [
+        "simple-import-sort"
+    ],
+    "ignorePatterns": [
+        "pb_data",
+        "pb_hooks",
+        "pb_migrations",
+        "public"
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-sort-props": [
+            "error",
+            {
+                "callbacksLast": true
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "no-fallthrough": "error",
+        "react/jsx-curly-brace-presence": [
+            "error",
+            {
+                "props": "never",
+                "children": "never"
+            }
+        ],
+        "react/no-unstable-nested-components": ["warn", {
+            "allowAsProps": true
+        }]
+    }
+}
