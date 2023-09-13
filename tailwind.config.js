@@ -9,6 +9,7 @@ module.exports = {
         background: "#F0EBE3",
         white: "#EEEEEE",
         text: "#2b2c34",
+        surface: "#dce5d3",
       },
     },
   },

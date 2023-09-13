@@ -94,6 +94,18 @@ export type Score = RecordModel & {
   };
 };
 
+export type LoginData = {
+  username: string;
+  password: string;
+};
+
+export type UserToCreate = {
+  username: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
+
 export type NoteToCreate = {
   title: string;
   module: string;

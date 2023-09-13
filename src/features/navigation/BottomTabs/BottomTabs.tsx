@@ -4,7 +4,7 @@ import { ModulesScreen } from "@src/features/modules";
 import { StudyingScreen } from "@src/features/studying";
 import { tailwindColors } from "@src/util";
 import { useTranslation } from "react-i18next";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -19,21 +19,21 @@ export const BottomTabs = () => {
           component={ModulesScreen}
           name={t("notes")}
           options={{
-            tabBarIcon: ({ color }) => <MaterialCommunityIcons color={color} name="playlist-edit" size={ICON_SIZE} />,
+            tabBarIcon: ({ color }) => <Icon color={color} name="playlist-edit" size={ICON_SIZE} />,
           }}
         />
         <Tab.Screen
           component={StudyingScreen}
           name="Study"
           options={{
-            tabBarIcon: ({ color }) => <MaterialCommunityIcons color={color} name="school" size={ICON_SIZE} />,
+            tabBarIcon: ({ color }) => <Icon color={color} name="school" size={ICON_SIZE} />,
           }}
         />
         <Tab.Screen
           component={StudyingScreen}
           name="Profile"
           options={{
-            tabBarIcon: ({ color }) => <MaterialCommunityIcons color={color} name="account" size={ICON_SIZE} />,
+            tabBarIcon: ({ color }) => <Icon color={color} name="account" size={ICON_SIZE} />,
           }}
         />
       </Tab.Navigator>

@@ -4,13 +4,13 @@ import PocketBase from "pocketbase";
 export const pb = new PocketBase(PB_URL);
 export const PB_FILES = `${PB_URL}/api/files`;
 
-export type pbErrorMessage =
+export type PbErrorMessage =
   | "Failed to create record."
   | "Failed to authenticate."
   | "You are not allowed to perform this request.";
 
-export type pbError = {
+export type PbError = {
   status: number;
   url: string;
-  message: pbErrorMessage;
+  message: PbErrorMessage;
 };
