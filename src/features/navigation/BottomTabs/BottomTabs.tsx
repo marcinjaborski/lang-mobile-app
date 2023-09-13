@@ -2,6 +2,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { NavigationContainer } from "@react-navigation/native";
 import { ModulesScreen } from "@src/features/modules";
 import { StudyingScreen } from "@src/features/studying";
+import { tailwindColors } from "@src/util";
 import { useTranslation } from "react-i18next";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -13,7 +14,7 @@ export const BottomTabs = () => {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator barStyle={{ backgroundColor: tailwindColors.primary }} shifting={true}>
         <Tab.Screen
           component={ModulesScreen}
           name={t("notes")}
