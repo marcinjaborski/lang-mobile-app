@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+import { pb } from "@src/util";
+import { View } from "react-native";
+import { Button } from "react-native-paper";
 
 export const StudyingScreen = () => {
   return (
-    <View>
-      <Text>Study</Text>
+    <View className="flex-1 align-center justify-center">
+      <Button onPress={() => pb.authStore.clear()}>Logout</Button>
     </View>
   );
 };

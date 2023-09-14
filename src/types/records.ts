@@ -100,7 +100,7 @@ export type LoginData = {
 };
 
 export type UserToCreate = {
-  username: string;
+  username?: string;
   email: string;
   password: string;
   passwordConfirm: string;
