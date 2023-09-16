@@ -1,4 +1,4 @@
-import { LoginScreenProps } from "@src/features/login";
+import { LoginScreenProps } from "@src/features/layout";
 import { useUserRepository } from "@src/hooks";
 import { PASSWORD_MIN_LENGTH } from "@src/util";
 import { Formik } from "formik";
@@ -33,7 +33,14 @@ export const LoginScreen = ({ navigation }: LoginScreenProps) => {
   };
 
   const onSubmit = ({ username, password }: LoginValues) => {
-    login.mutate({ username, password });
+    login.mutate(
+      { username, password },
+      {
+        onSuccess() {
+          navigation.goBack();
+        },
+      },
+    );
   };
 
   const goToRegister = () => {

@@ -32,6 +32,7 @@
         "public"
     ],
     "rules": {
+        "prettier/prettier": ["error", { "endOfLine": "auto" }],
         "react/react-in-jsx-scope": "off",
         "react/jsx-sort-props": [
             "error",

@@ -1,11 +1,16 @@
-import { LoginStack } from "@src/features/login";
+import { createStackNavigator } from "@react-navigation/stack";
+import { LayoutStackParamList } from "@src/features/layout";
+import { LoginScreen, RegisterScreen } from "@src/features/login";
 import { BottomTabs } from "@src/features/navigation";
-import { useUserRepository } from "@src/hooks";
+
+const Stack = createStackNavigator<LayoutStackParamList>();
 
 export const Layout = () => {
-  const { currentUser } = useUserRepository();
-
-  if (currentUser === null) return <LoginStack />;
-
-  return <BottomTabs />;
+  return (
+    <Stack.Navigator initialRouteName="LoggedApp" screenOptions={{ headerShown: false }}>
+      <Stack.Screen component={BottomTabs} name="LoggedApp" />
+      <Stack.Screen component={LoginScreen} name="Login" />
+      <Stack.Screen component={RegisterScreen} name="Register" />
+    </Stack.Navigator>
+  );
 };

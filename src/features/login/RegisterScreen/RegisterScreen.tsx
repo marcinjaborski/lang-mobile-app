@@ -1,4 +1,4 @@
-import { RegisterScreenProps } from "@src/features/login";
+import { RegisterScreenProps } from "@src/features/layout";
 import { useUserRepository } from "@src/hooks";
 import { PASSWORD_MIN_LENGTH } from "@src/util";
 import { Formik } from "formik";
@@ -39,7 +39,12 @@ export const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
   };
 
   const onSubmit = (values: RegisterValues) => {
-    register.mutate(values);
+    register.mutate(values, {
+      onSuccess() {
+        navigation.goBack();
+        navigation.goBack();
+      },
+    });
   };
 
   const goToLogin = () => {
