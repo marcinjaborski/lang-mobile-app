@@ -43,4 +43,7 @@ export const en = {
     settings: "Settings",
     logout: "Logout",
   },
+  modules: {
+    hello: "Hello {{username}}",
+  },
 };
