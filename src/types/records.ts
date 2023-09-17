@@ -13,7 +13,7 @@ export type User = BaseModel & {
   avatar: string | null;
   public: boolean;
   friends: string[];
-  expand: {
+  expand?: {
     friends?: User[];
   };
 };

@@ -1,10 +1,19 @@
 import { LoginData, User, UserToCreate } from "@src/types";
 import { pb, PbError } from "@src/util";
 import { RecordAuthResponse } from "pocketbase";
+import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 
 export const useUserRepository = () => {
-  const currentUser = pb.authStore.model as User | null;
+  const [currentUser, setCurrentUser] = useState(pb.authStore.model as User | null);
+
+  useEffect(() => {
+    pb.authStore.onChange((_, model) => {
+      setCurrentUser(model as User);
+    });
+  }, []);
+
+  const getByUsername = (username: string) => pb.collection("users").getFirstListItem<User>(`username="${username}"`);
 
   const login = useMutation<RecordAuthResponse<User>, PbError, LoginData>(({ username, password }) => {
     return pb.collection("users").authWithPassword(username, password, { expand: "friends" });
@@ -15,11 +24,26 @@ export const useUserRepository = () => {
       return pb.collection("users").create(data);
     },
     {
-      onSuccess(_, { username, password }) {
-        login.mutate({ username, password });
+      onSuccess(_, { username, email, password }) {
+        login.mutate({ username: username || email, password });
       },
     },
   );
 
-  return { currentUser, login, register };
+  const logout = () => {
+    pb.authStore.clear();
+  };
+
+  const updateUser = useMutation<User, PbError, Partial<User>>(
+    (user) => {
+      return pb.collection("users").update(currentUser?.id || "", user, { expand: "friends" });
+    },
+    {
+      onSuccess(newUser) {
+        setCurrentUser(newUser);
+      },
+    },
+  );
+
+  return { currentUser, getByUsername, login, register, logout, updateUser };
 };

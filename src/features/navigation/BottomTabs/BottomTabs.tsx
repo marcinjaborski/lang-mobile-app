@@ -2,6 +2,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { LoggedAppScreenProps } from "@src/features/layout";
 import { ModulesScreen } from "@src/features/modules";
 import { StudyingScreen } from "@src/features/studying";
+import { UserStack } from "@src/features/user";
 import { useUserRepository } from "@src/hooks";
 import { tailwindColors } from "@src/util";
 import { useEffect } from "react";
@@ -23,8 +24,9 @@ export const BottomTabs = ({ navigation }: LoggedAppScreenProps) => {
     <Tab.Navigator barStyle={{ backgroundColor: tailwindColors.primary }} shifting={true}>
       <Tab.Screen
         component={ModulesScreen}
-        name={t("notes")}
+        name="Notes"
         options={{
+          tabBarLabel: t("notes"),
           tabBarIcon: ({ color }) => <Icon color={color} name="playlist-edit" size={ICON_SIZE} />,
         }}
       />
@@ -32,13 +34,15 @@ export const BottomTabs = ({ navigation }: LoggedAppScreenProps) => {
         component={StudyingScreen}
         name="Study"
         options={{
+          tabBarLabel: t("study"),
           tabBarIcon: ({ color }) => <Icon color={color} name="school" size={ICON_SIZE} />,
         }}
       />
       <Tab.Screen
-        component={StudyingScreen}
-        name="Profile"
+        component={UserStack}
+        name="User"
         options={{
+          tabBarLabel: t("profile"),
           tabBarIcon: ({ color }) => <Icon color={color} name="account" size={ICON_SIZE} />,
         }}
       />

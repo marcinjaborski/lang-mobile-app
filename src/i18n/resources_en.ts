@@ -36,4 +36,11 @@ export const en = {
     "Failed to create record.": "Email or username is already in use",
     "You are not allowed to perform this request.": "You are not allowed to perform this operation",
   },
+  user: {
+    points: "{{points}} points",
+    public: "Public Profile",
+    newFriend: "New friend",
+    settings: "Settings",
+    logout: "Logout",
+  },
 };
