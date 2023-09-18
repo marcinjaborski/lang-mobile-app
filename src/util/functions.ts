@@ -1,3 +1,5 @@
+import { Term, UNDERSTANDING } from "@src/types";
+
 export const getAvatarColor = (string: string) => {
   let hash = 0;
   let i;
@@ -20,4 +22,11 @@ export const getAvatarColor = (string: string) => {
 
 export const toCountryCode = (code: string): string => {
   return code === "en" ? "gb" : code;
+};
+
+export const getProgress = (terms: Term[] = []): number => {
+  if (!terms.length) return 0;
+  const cumulativeUnderstanding = terms.reduce((acc, curr) => acc + curr.understanding, 0);
+  const totalUnderstanding = terms.length * UNDERSTANDING.FINAL;
+  return cumulativeUnderstanding / totalUnderstanding;
 };

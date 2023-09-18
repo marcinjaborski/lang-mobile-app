@@ -1,7 +1,7 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { LoggedAppScreenProps } from "@src/features/layout";
 import { NotesStack } from "@src/features/notes";
-import { StudyingScreen } from "@src/features/studying";
+import { StudyStack } from "@src/features/studying";
 import { UserStack } from "@src/features/user";
 import { useUserRepository } from "@src/hooks";
 import { tailwindColors } from "@src/util";
@@ -31,7 +31,7 @@ export const BottomTabs = ({ navigation }: LoggedAppScreenProps) => {
         }}
       />
       <Tab.Screen
-        component={StudyingScreen}
+        component={StudyStack}
         name="Study"
         options={{
           tabBarLabel: t("study"),

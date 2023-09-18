@@ -49,4 +49,13 @@ export const en = {
     hello: "Hello {{username}}",
     noContent: "No Content",
   },
+  study: {
+    study: "Study sets",
+    flashcards: "Flashcards",
+    quiz: "Quiz",
+    match: "Match",
+    leaderboards: "Leaderboards",
+    terms: "Terms",
+    dismiss: "Dismiss",
+  },
 };

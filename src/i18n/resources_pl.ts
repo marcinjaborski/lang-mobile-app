@@ -51,4 +51,13 @@ export const pl: Resource = {
     hello: "Cześć {{username}}",
     noContent: "Brak zawartości",
   },
+  study: {
+    study: "Zestawy do nauki",
+    flashcards: "Fiszki",
+    quiz: "Quiz",
+    match: "Dopasuj",
+    leaderboards: "Tablica wyników",
+    terms: "Słówka",
+    dismiss: "Zamknij",
+  },
 };
