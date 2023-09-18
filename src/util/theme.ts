@@ -1,10 +1,19 @@
+import { DefaultTheme as DefaultNavigationTheme } from "@react-navigation/native";
 import { tailwindColors } from "@src/util/tailwindConfig";
-import { MD3LightTheme as DefaultTheme } from "react-native-paper";
+import { MD3LightTheme as DefaultPaperTheme } from "react-native-paper";
 
-export const theme = {
-  ...DefaultTheme,
+export const paperTheme = {
+  ...DefaultPaperTheme,
   colors: {
-    ...DefaultTheme.colors,
+    ...DefaultPaperTheme.colors,
+    ...tailwindColors,
+  },
+};
+
+export const navigationTheme = {
+  ...DefaultNavigationTheme,
+  colors: {
+    ...DefaultNavigationTheme.colors,
     ...tailwindColors,
   },
 };

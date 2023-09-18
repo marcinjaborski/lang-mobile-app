@@ -1,6 +1,6 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { LoggedAppScreenProps } from "@src/features/layout";
-import { ModulesScreen } from "@src/features/modules";
+import { NotesStack } from "@src/features/notes";
 import { StudyingScreen } from "@src/features/studying";
 import { UserStack } from "@src/features/user";
 import { useUserRepository } from "@src/hooks";
@@ -23,7 +23,7 @@ export const BottomTabs = ({ navigation }: LoggedAppScreenProps) => {
   return (
     <Tab.Navigator barStyle={{ backgroundColor: tailwindColors.primary }} shifting={true}>
       <Tab.Screen
-        component={ModulesScreen}
+        component={NotesStack}
         name="Notes"
         options={{
           tabBarLabel: t("notes"),

@@ -43,7 +43,10 @@ export const en = {
     settings: "Settings",
     logout: "Logout",
   },
-  modules: {
+  notes: {
+    modulesHeader: "Modules",
+    noteHeader: "Note",
     hello: "Hello {{username}}",
+    noContent: "No Content",
   },
 };

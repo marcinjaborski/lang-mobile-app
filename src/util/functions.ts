@@ -17,3 +17,7 @@ export const getAvatarColor = (string: string) => {
 
   return color;
 };
+
+export const toCountryCode = (code: string): string => {
+  return code === "en" ? "gb" : code;
+};

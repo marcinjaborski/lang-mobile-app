@@ -45,7 +45,10 @@ export const pl: Resource = {
     settings: "Ustawienia",
     logout: "Wyloguj się",
   },
-  modules: {
+  notes: {
+    modulesHeader: "Moduły",
+    noteHeader: "Notatka",
     hello: "Cześć {{username}}",
+    noContent: "Brak zawartości",
   },
 };

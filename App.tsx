@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 import "@src/i18n/i18n";
 
 import { NavigationContainer } from "@react-navigation/native";
-import { theme } from "@src/util";
+import { navigationTheme, paperTheme } from "@src/util";
 import { PaperProvider } from "react-native-paper";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -13,8 +13,8 @@ const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer>
+      <PaperProvider theme={paperTheme}>
+        <NavigationContainer theme={navigationTheme}>
           <Layout />
         </NavigationContainer>
       </PaperProvider>
