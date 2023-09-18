@@ -1,3 +1,4 @@
+import { StudySetsScreenProps } from "@src/features/studying";
 import { useSettings } from "@src/hooks";
 import { StudySet, TermUnderstanding } from "@src/types";
 import { DEFAULT_SEPARATOR, getProgress, tailwindColors } from "@src/util";
@@ -7,9 +8,10 @@ import { Button, Card, Dialog, Portal, ProgressBar, Text } from "react-native-pa
 
 type StudySetCardProps = {
   studySet: StudySet;
+  navigate: StudySetsScreenProps["navigation"]["navigate"];
 };
 
-export const StudySetCard = ({ studySet }: StudySetCardProps) => {
+export const StudySetCard = ({ studySet, navigate }: StudySetCardProps) => {
   const { t } = useTranslation("study");
   const settings = useSettings();
   const [termsDialogVisible, setTermsDialogVisible] = useState(false);
@@ -27,10 +29,10 @@ export const StudySetCard = ({ studySet }: StudySetCardProps) => {
       <Card.Content className="my-2 gap-2">
         <ProgressBar color={tailwindColors.secondary} progress={getProgress(studySet.expand.terms)} />
         <Button onPress={() => setTermsDialogVisible(true)}>{t("terms")}</Button>
-        <Button>{t("flashcards")}</Button>
-        <Button>{t("quiz")}</Button>
-        <Button>{t("match")}</Button>
-        <Button>{t("leaderboards")}</Button>
+        <Button onPress={() => navigate("Flashcards", { studySet })}>{t("flashcards")}</Button>
+        <Button onPress={() => navigate("Quiz", { studySet })}>{t("quiz")}</Button>
+        <Button onPress={() => navigate("Match", { studySet })}>{t("match")}</Button>
+        <Button onPress={() => navigate("Leaderboards", { studySet })}>{t("leaderboards")}</Button>
       </Card.Content>
       <Portal>
         <Dialog visible={termsDialogVisible} onDismiss={() => setTermsDialogVisible(false)}>
