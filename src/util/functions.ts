@@ -30,3 +30,7 @@ export const getProgress = (terms: Term[] = []): number => {
   const totalUnderstanding = terms.length * UNDERSTANDING.FINAL;
   return cumulativeUnderstanding / totalUnderstanding;
 };
+
+export const calculateScore = (time: number, correct: number) => {
+  return Math.round(100 * Math.pow(Math.E, -0.01 * time) * correct);
+};

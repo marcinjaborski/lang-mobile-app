@@ -2,15 +2,15 @@ import { StudySet, StudySetToCreate, UpdateRecord } from "@src/types";
 import { pb, PB_CUSTOM_ROUTES, PbError } from "@src/util";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-export const useStudySetRepository = () => {
+export const useStudySetRepository = (studySetId = "") => {
   const queryClient = useQueryClient();
 
-  // const view = useQuery<StudySet>(["view-studySets", params.id], () => {
-  //   if (!params.id) return new Promise<StudySet>(() => {});
-  //   return pb.collection("studySets").getOne<StudySet>(params.id, {
-  //     expand: "terms,shared",
-  //   });
-  // });
+  const view = useQuery<StudySet>(["view-studySets", studySetId], () => {
+    if (!studySetId) return new Promise<StudySet>(() => {});
+    return pb.collection("studySets").getOne<StudySet>(studySetId, {
+      expand: "terms,shared",
+    });
+  });
 
   const list = useQuery<StudySet[]>("list-studySets", () => {
     return pb.collection("studySets").getFullList<StudySet>({
@@ -59,5 +59,5 @@ export const useStudySetRepository = () => {
     },
   );
 
-  return { list, create, update, share, delete: deleteMutation };
+  return { view, list, create, update, share, delete: deleteMutation };
 };

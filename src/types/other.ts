@@ -1,3 +1,4 @@
+import { Term } from "@src/types";
 import React from "react";
 
 export const languages = ["pl", "en", "fr", "es", "it", "de"] as const;
@@ -23,4 +24,9 @@ export type DeeplResponse = {
     text: string;
     detected_source_language: string;
   }[];
+};
+
+export type Question = {
+  term: Term;
+  answers: string[];
 };

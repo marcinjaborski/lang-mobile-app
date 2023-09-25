@@ -57,5 +57,7 @@ export const en = {
     leaderboards: "Leaderboards",
     terms: "Terms",
     dismiss: "Dismiss",
+    endAttempt: "End attempt",
+    result: "You got {{result}} right",
   },
 };
