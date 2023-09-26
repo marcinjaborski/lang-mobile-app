@@ -2,7 +2,7 @@ import { LoginScreenProps } from "@src/features/layout";
 import { useUserRepository } from "@src/hooks";
 import { PASSWORD_MIN_LENGTH } from "@src/util";
 import { Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { ActivityIndicator, Appbar, Button, HelperText, Snackbar, TextInput } from "react-native-paper";
@@ -12,7 +12,11 @@ import { InferType } from "yup";
 export const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const { t } = useTranslation("login");
   const [showPassword, setShowPassword] = useState(false);
-  const { login } = useUserRepository();
+  const { login, currentUser } = useUserRepository();
+
+  useEffect(() => {
+    if (currentUser) navigation.navigate("LoggedApp");
+  }, [navigation, currentUser]);
 
   const loginSchema = yup.object({
     username: yup

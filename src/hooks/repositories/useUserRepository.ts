@@ -1,27 +1,33 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LoginData, User, UserToCreate } from "@src/types";
 import { pb, PbError } from "@src/util";
 import { RecordAuthResponse } from "pocketbase";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 
+const COLLECTION = "users";
+export const CREDENTIALS = "credentials";
+
 export const useUserRepository = () => {
   const [currentUser, setCurrentUser] = useState(pb.authStore.model as User | null);
 
-  useEffect(() => {
-    pb.authStore.onChange((_, model) => {
-      setCurrentUser(model as User);
-    });
-  }, []);
+  const getByUsername = (username: string) =>
+    pb.collection(COLLECTION).getFirstListItem<User>(`username="${username}"`);
 
-  const getByUsername = (username: string) => pb.collection("users").getFirstListItem<User>(`username="${username}"`);
-
-  const login = useMutation<RecordAuthResponse<User>, PbError, LoginData>(({ username, password }) => {
-    return pb.collection("users").authWithPassword(username, password, { expand: "friends" });
-  });
+  const login = useMutation<RecordAuthResponse<User>, PbError, LoginData>(
+    ({ username, password }) => {
+      return pb.collection(COLLECTION).authWithPassword(username, password, { expand: "friends" });
+    },
+    {
+      async onSuccess(_, credentials) {
+        await AsyncStorage.setItem(CREDENTIALS, JSON.stringify(credentials)).catch((e) => console.log(e));
+      },
+    },
+  );
 
   const register = useMutation<User, PbError, UserToCreate>(
     (data) => {
-      return pb.collection("users").create(data);
+      return pb.collection(COLLECTION).create(data);
     },
     {
       onSuccess(_, { username, email, password }) {
@@ -30,13 +36,14 @@ export const useUserRepository = () => {
     },
   );
 
-  const logout = () => {
+  const logout = async () => {
     pb.authStore.clear();
+    await AsyncStorage.removeItem(CREDENTIALS).catch((e) => console.log(e));
   };
 
   const updateUser = useMutation<User, PbError, Partial<User>>(
     (user) => {
-      return pb.collection("users").update(currentUser?.id || "", user, { expand: "friends" });
+      return pb.collection(COLLECTION).update(currentUser?.id || "", user, { expand: "friends" });
     },
     {
       onSuccess(newUser) {
@@ -44,6 +51,12 @@ export const useUserRepository = () => {
       },
     },
   );
+
+  useEffect(() => {
+    pb.authStore.onChange((_, model) => {
+      setCurrentUser(model as User);
+    });
+  }, []);
 
   return { currentUser, getByUsername, login, register, logout, updateUser };
 };

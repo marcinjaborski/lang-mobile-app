@@ -1,5 +1,6 @@
 import { ModulesScreenProps, NoteShelf, OpenNoteFunction } from "@src/features/notes";
 import { useModuleRepository, useUserRepository } from "@src/hooks";
+import { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { RefreshControl, ScrollView } from "react-native";
 import { Divider, Text } from "react-native-paper";
@@ -10,9 +11,13 @@ export const ModulesScreen = ({ navigation }: ModulesScreenProps) => {
   const modules = useModuleRepository();
   const { currentUser } = useUserRepository();
 
-  const onRefresh = async () => {
+  const onRefresh = useCallback(async () => {
     await modules.list.refetch();
-  };
+  }, [modules]);
+
+  useEffect(() => {
+    if (currentUser) onRefresh();
+  }, [currentUser, onRefresh]);
 
   const openNote: OpenNoteFunction = (note) => {
     navigation.navigate("Note", { note });
