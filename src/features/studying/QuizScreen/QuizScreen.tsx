@@ -1,5 +1,6 @@
 import { QuizScreenProps } from "@src/features/studying";
 import { tailwindColors } from "@src/util";
+import { useRef } from "react";
 import { ActivityIndicator, Button, Card, RadioButton, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Swiper from "react-native-swiper";
@@ -9,6 +10,7 @@ import { useQuizScreen } from "./useQuizScreen";
 export const QuizScreen = ({ route }: QuizScreenProps) => {
   const studySet = route.params.studySet;
   const { t, questions, result, answered, setAnswered, getAnswerColor, onEnd } = useQuizScreen(studySet);
+  const ref = useRef<Swiper>(null);
 
   if (!questions)
     return (
@@ -20,7 +22,7 @@ export const QuizScreen = ({ route }: QuizScreenProps) => {
   return (
     <SafeAreaView className="flex-1 bg-background items-center justify-center">
       {result !== null ? <Text variant="displaySmall">{t("result", { result })}</Text> : null}
-      <Swiper activeDotColor={tailwindColors.primary}>
+      <Swiper activeDotColor={tailwindColors.primary} ref={ref}>
         {questions.map(({ term, answers }) => (
           <Card className="w-3/4 m-auto" key={term.id}>
             <Card.Title title={term.base} titleVariant="headlineMedium" />
@@ -29,7 +31,11 @@ export const QuizScreen = ({ route }: QuizScreenProps) => {
                 <RadioButton.Group
                   key={answer}
                   value={answered[term.base]}
-                  onValueChange={(value) => setAnswered((prevState) => ({ ...prevState, [term.base]: value }))}
+                  onValueChange={(value) => {
+                    if (result !== null) return;
+                    setAnswered((prevState) => ({ ...prevState, [term.base]: value }));
+                    ref.current?.scrollBy(1);
+                  }}
                 >
                   <RadioButton.Item
                     label={answer}

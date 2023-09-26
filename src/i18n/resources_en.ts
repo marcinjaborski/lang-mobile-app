@@ -59,5 +59,9 @@ export const en = {
     dismiss: "Dismiss",
     endAttempt: "End attempt",
     result: "You got {{result}} right",
+    user: "User",
+    game: "Game",
+    date: "Date",
+    score: "Score",
   },
 };
