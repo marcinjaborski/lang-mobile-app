@@ -12,7 +12,14 @@ export const useTermRepository = () => {
   });
 
   const updateUnderstanding = useMutation<void, PbError, string[]>((terms) => {
-    return pb.send(`${PB_CUSTOM_ROUTES}/updateUnderstanding`, { method: "POST", body: { terms } });
+    return pb.send(`${PB_CUSTOM_ROUTES}/updateUnderstanding`, {
+      method: "POST",
+      body: { terms },
+      async onSuccess() {
+        await queryClient.invalidateQueries("list-terms");
+        await queryClient.invalidateQueries("list-studySets");
+      },
+    });
   });
 
   const deleteMutation = useMutation<boolean, PbError, string>(
