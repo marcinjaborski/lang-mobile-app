@@ -1,4 +1,6 @@
 import { Term, UNDERSTANDING } from "@src/types";
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export const getAvatarColor = (string: string) => {
   let hash = 0;
@@ -32,5 +34,7 @@ export const getProgress = (terms: Term[] = []): number => {
 };
 
 export const calculateScore = (time: number, correct: number) => {
-  return Math.round(100 * Math.pow(Math.E, -0.01 * time) * correct);
+  return Math.round(100 * Math.pow(Math.E, -0.01 * time) * Math.max(correct, 0));
 };
+
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));

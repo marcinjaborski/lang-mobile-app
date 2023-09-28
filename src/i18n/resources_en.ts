@@ -63,5 +63,8 @@ export const en = {
     game: "Game",
     date: "Date",
     score: "Score",
+    matchEnd: "Congratulations!",
+    timeScore: "You completed game in {{timeScore}}s",
+    misses: "Misses: {{incorrectCounter}}",
   },
 };

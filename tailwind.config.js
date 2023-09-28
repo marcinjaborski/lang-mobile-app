@@ -23,6 +23,7 @@ module.exports = {
         white: "#EEEEEE",
         text: "#2b2c34",
         surface: "#dce5d3",
+        error: "#e54c4c",
       },
     },
   },
