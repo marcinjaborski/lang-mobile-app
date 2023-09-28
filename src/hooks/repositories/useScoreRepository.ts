@@ -5,12 +5,12 @@ import { useMutation, useQuery } from "react-query";
 
 const COLLECTION = "scores";
 
-export const useScoreRepository = (studySetSharedId: string) => {
+export const useScoreRepository = (studySetSharedId?: string) => {
   const { currentUser } = useUserRepository();
 
   const list = useQuery(["list-scores", studySetSharedId], () => {
     return pb.collection(COLLECTION).getFullList<Score>({
-      filter: `studySetSharedId = "${studySetSharedId}"`,
+      ...(studySetSharedId && { filter: `studySetSharedId = "${studySetSharedId}"` }),
       expand: "user",
       sort: "-score",
     });

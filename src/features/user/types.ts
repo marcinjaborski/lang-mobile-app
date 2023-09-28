@@ -6,4 +6,3 @@ export type UserStackParamList = {
 };
 
 export type ProfileScreenProps = StackScreenProps<UserStackParamList, "Profile">;
-export type SettingsScreenProps = StackScreenProps<UserStackParamList, "Settings">;
