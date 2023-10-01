@@ -1,5 +1,6 @@
 import { StudySet, StudySetToCreate, UpdateRecord } from "@src/types";
 import { pb, PB_CUSTOM_ROUTES, PbError } from "@src/util";
+import uuid from "react-native-uuid";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 export const useStudySetRepository = (studySetId = "") => {
@@ -22,7 +23,7 @@ export const useStudySetRepository = (studySetId = "") => {
     (studySet) => {
       return pb.collection("studySets").create({
         ...studySet,
-        sharedId: crypto.randomUUID(),
+        sharedId: uuid.v4(),
         owner: pb.authStore.model!.id,
       });
     },
