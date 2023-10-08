@@ -2,7 +2,7 @@ import { PB_URL } from "@env";
 import PocketBase from "pocketbase";
 
 export const pb = new PocketBase(PB_URL);
-export const PB_FILES = `${PB_URL}/api/files`;
+export const PB_FILES = `${PB_URL}api/files`;
 export const PB_CUSTOM_ROUTES = "/hooks";
 
 export type PbErrorMessage =

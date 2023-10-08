@@ -51,10 +51,11 @@ export const ProfileScreen = ({}: ProfileScreenProps) => {
   return (
     <SafeAreaView className="flex-1 bg-background items-center justify-center gap-3 p-3">
       {currentUser.avatar ? (
-        <Avatar.Image source={{ uri: `${PB_FILES}/users/${currentUser.id}/${currentUser.avatar}` }} />
+        <Avatar.Image size={96} source={{ uri: `${PB_FILES}/users/${currentUser.id}/${currentUser.avatar}` }} />
       ) : (
         <Avatar.Text
           label={currentUser.username.at(0)?.toUpperCase() || "U"}
+          size={96}
           style={{ backgroundColor: getAvatarColor(currentUser.username) }}
         />
       )}
