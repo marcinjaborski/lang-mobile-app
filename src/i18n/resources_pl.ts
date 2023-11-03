@@ -62,6 +62,8 @@ export const pl: Resource = {
     dismiss: "Zamknij",
     endAttempt: "Zakończ",
     result: "{{result}} poprawnych odpowiedzi",
+    timeTaken: "Czas: {{timeTaken}}s",
+    points: "Punkty: {{points}}",
     user: "Użytkownik",
     game: "Gra",
     date: "Data",

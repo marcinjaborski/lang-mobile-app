@@ -60,6 +60,8 @@ export const en = {
     dismiss: "Dismiss",
     endAttempt: "End attempt",
     result: "You got {{result}} right",
+    timeTaken: "Time taken: {{timeTaken}}s",
+    points: "Points: {{points}}",
     user: "User",
     game: "Game",
     date: "Date",
