@@ -41,6 +41,7 @@ export const pl: Resource = {
   user: {
     points: "{{points}} punktów",
     public: "Profil publiczny",
+    language: "Język",
     newFriend: "Nowy użytkownik",
     settings: "Ustawienia",
     logout: "Wyloguj się",

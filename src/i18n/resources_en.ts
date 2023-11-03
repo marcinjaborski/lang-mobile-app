@@ -39,6 +39,7 @@ export const en = {
   user: {
     points: "{{points}} points",
     public: "Public Profile",
+    language: "Language",
     newFriend: "New friend",
     settings: "Settings",
     logout: "Logout",
@@ -75,8 +76,8 @@ export const en = {
       all: "All terms",
       module: "Module",
       note: "Note",
-      includeTags: "Include only terms with tags",
-      excludeTags: "Exclude terms with tags",
+      includeTags: "Include tags",
+      excludeTags: "Exclude tags",
       dismiss: "Dismiss",
       cancel: "Cancel",
       create: "Create",

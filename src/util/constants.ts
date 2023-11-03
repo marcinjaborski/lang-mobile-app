@@ -6,3 +6,4 @@ export const DEFAULT_SEPARATOR = " > ";
 export const QUIZ_QUESTIONS = 10;
 export const QUIZ_ANSWERS = 4;
 export const MATCH_INCORRECT_TIME = 1000;
+export const STORE_LANGUAGE_KEY = "settings.lang";
