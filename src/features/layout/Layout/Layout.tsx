@@ -5,6 +5,7 @@ import { LoginScreen, RegisterScreen } from "@src/features/login";
 import { BottomTabs } from "@src/features/navigation";
 import { CREDENTIALS, useUserRepository } from "@src/hooks";
 import { STORE_LANGUAGE_KEY } from "@src/util";
+import { registerForPushNotificationsAsync, scheduleDailyReminder } from "@src/util/notifications";
 import * as Localization from "expo-localization";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -14,7 +15,7 @@ const Stack = createStackNavigator<LayoutStackParamList>();
 export const Layout = () => {
   const [loginAttempted, setLoginAttempted] = useState(false);
   const { login, currentUser } = useUserRepository();
-  const { i18n } = useTranslation("navigation");
+  const { t, i18n } = useTranslation("app", { keyPrefix: "notification" });
 
   useEffect(() => {
     if (loginAttempted || currentUser) return;
@@ -38,6 +39,14 @@ export const Layout = () => {
       console.log("Error reading language", error);
     }
   }, [i18n]);
+
+  useEffect(() => {
+    (async () => {
+      const permitted = await registerForPushNotificationsAsync();
+      if (!permitted) return;
+      await scheduleDailyReminder(t("title"), t("body"));
+    })();
+  }, [t]);
 
   return (
     <Stack.Navigator initialRouteName="LoggedApp" screenOptions={{ headerShown: false }}>

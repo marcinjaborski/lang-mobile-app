@@ -1,6 +1,12 @@
 import { Resource } from "./types";
 
 export const pl: Resource = {
+  app: {
+    notification: {
+      title: "Nie zapomnij o nauce ✍️",
+      body: "Kliknij aby rozpocząć codzienną naukę",
+    },
+  },
   navigation: {
     notes: "Notatki",
     study: "Nauka",

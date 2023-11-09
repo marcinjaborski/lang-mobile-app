@@ -1,4 +1,10 @@
 export const en = {
+  app: {
+    notification: {
+      title: "Don't forget to study ✍️",
+      body: "Click for a daily studying session",
+    },
+  },
   navigation: {
     notes: "Notes",
     study: "Study",
